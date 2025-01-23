@@ -14,7 +14,7 @@ export const Navbar = () => {
                 </div>
                 <div className="flex items-center gap-4">
                     <a 
-                        href="https://github.com/simonbonnedahl/logoloom" 
+                        href="https://github.com/simon-bonnedahl/logolab" 
                         target="_blank" 
                         rel="noreferrer"
                         className="hover:text-foreground/80 transition-colors flex items-center gap-2"

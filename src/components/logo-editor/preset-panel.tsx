@@ -1,6 +1,4 @@
-import React from "react";
 import { LogoSettings } from ".";
-import { Button } from "../ui/button";
 import { Logo } from "./logo";
 import additionalPresets from "./additional-presets";
 

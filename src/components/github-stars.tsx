@@ -9,7 +9,7 @@ export const GitHubStars = () => {
     useEffect(() => {
         const fetchStars = async () => {
             try {
-                const response = await fetch('https://api.github.com/repos/simonbonnedahl/logoloom')
+                const response = await fetch('https://api.github.com/repos/simon-bonnedahl/logolab')
                 const data = await response.json()
                 setStars(data.stargazers_count)
             } catch (error) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Logo } from "./logo-editor/logo";
 import additionalPresets from "./logo-editor/additional-presets";
 import { LogoSettings } from "./logo-editor";
