@@ -38,7 +38,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.8,
   },
   {
-    background: "linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)",
+    background: "linear-gradient(to top right, #4158D0 0%, #C850C0 46%, #FFCC70 100%)",
     fillColor: "#ffffff",
     fillOpacity: 0.1,
     strokeColor: "#ffffff",
@@ -50,7 +50,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.75,
   },
   {
-    background: "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+    background: "linear-gradient(to bottom right, #0093E9 0%, #80D0C7 100%)",
     fillColor: "#ffffff",
     fillOpacity: 0,
     strokeColor: "#ffffff",
@@ -62,7 +62,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.8,
   },
   {
-    background: "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)",
+    background: "linear-gradient(to bottom right, #8EC5FC 0%, #E0C3FC 100%)",
     fillColor: "#000000",
     fillOpacity: 0.1,
     strokeColor: "#000000",
@@ -74,7 +74,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.75,
   },
   {
-    background: "linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%)",
+    background: "linear-gradient(to top right, #85FFBD 0%, #FFFB7D 100%)",
     fillColor: "#000000",
     fillOpacity: 0.1,
     strokeColor: "#000000",
@@ -98,7 +98,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.8,
   },
   {
-    background: "linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%)",
+    background: "linear-gradient(to top right, #FBDA61 0%, #FF5ACD 100%)",
     fillColor: "#ffffff",
     fillOpacity: 0,
     strokeColor: "#ffffff",
@@ -110,7 +110,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.75,
   },
   {
-    background: "linear-gradient(120deg, #84FAB0 0%, #8FD3F4 100%)",
+    background: "linear-gradient(to bottom right, #84FAB0 0%, #8FD3F4 100%)",
     fillColor: "#000000",
     fillOpacity: 0.1,
     strokeColor: "#000000",
@@ -146,7 +146,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.8,
   },
   {
-    background: "linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 50%, #2BFF88 100%)",
+    background: "linear-gradient(to top right, #FA8BFF 0%, #2BD2FF 50%, #2BFF88 100%)",
     fillColor: "#000000",
     fillOpacity: 0.1,
     strokeColor: "#000000",
@@ -158,7 +158,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.75,
   },
   {
-    background: "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+    background: "linear-gradient(to bottom right, #0093E9 0%, #80D0C7 100%)",
     fillColor: "#ffffff",
     fillOpacity: 0.1,
     strokeColor: "#ffffff",
@@ -182,7 +182,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.75,
   },
   {
-    background: "linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%)",
+    background: "linear-gradient(to top right, #85FFBD 0%, #FFFB7D 100%)",
     fillColor: "#000000",
     fillOpacity: 0.1,
     strokeColor: "#000000",
@@ -194,7 +194,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.8,
   },
   {
-    background: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
+    background: "linear-gradient(to bottom right, #FBAB7E 0%, #F7CE68 100%)",
     fillColor: "#ffffff",
     fillOpacity: 0.1,
     strokeColor: "#ffffff",
@@ -206,7 +206,7 @@ const additionalPresets: LogoSettings[] = [
     size: 0.75,
   },
   {
-    background: "linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 100%)",
+    background: "linear-gradient(to top right, #FA8BFF 0%, #2BD2FF 100%)",
     fillColor: "#ffffff",
     fillOpacity: 0,
     strokeColor: "#ffffff",
