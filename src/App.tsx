@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/components/theme-provider"
 import LogoEditor from "./components/logo-editor"
 import { Navbar } from "./components/navbar"
+import { TailwindIndicator } from "./components/tailwind-indicator"
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
       <LogoEditor />
 
       </main>
+      <TailwindIndicator/>
      
     </ThemeProvider>
   )

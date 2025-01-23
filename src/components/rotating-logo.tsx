@@ -17,15 +17,8 @@ export const RotatingLogo = () => {
   }, []);
 
   const currentPreset: LogoSettings = additionalPresets[currentPresetIndex];
-  const scaledPreset = {
-    ...currentPreset,
-    size: Math.round(currentPreset.size * (15 / currentPreset.size)),
-    radius: Math.round(currentPreset.radius * (30 / currentPreset.size))
-  };
 
   return (
-    <div className="mr-2">
-      <Logo settings={scaledPreset} size={25} />
-    </div>
+      <Logo settings={currentPreset} className="size-7" />
   );
 };

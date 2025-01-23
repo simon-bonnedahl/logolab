@@ -1,30 +1,27 @@
+import { cn } from "@/lib/utils";
 import { LogoSettings } from ".";
 import { IconRenderer } from "../icon-picker";
 
 interface LogoProps {
     settings: LogoSettings;
-    size: number;
+    className?: string;
   }
-  export const Logo = ({ settings, size }: LogoProps) => {
+  export const Logo = ({ settings, className }: LogoProps) => {
   return (
     <div
-          className={"relative flex items-center justify-center shadow-xl"}
+          className={cn("relative flex items-center justify-center ", className)}
           style={{
-            width: size,
-            height: size,
             background: settings.background,
-            borderRadius: settings.radius,
-            padding: Math.max(0, (size - settings.size) / 2)
+            borderRadius: settings.borderRadius * 100 + "%",
           }}
         >
-          <div style={{ transform: `rotate(${settings.rotation}deg)` }}>
+          <div style={{ transform: `rotate(${settings.rotation}deg)`, width: `${settings.size * 100}%`, height: `${settings.size * 100}%`}} >
             <IconRenderer
+              className="size-full"
               icon={settings.iconName}
-              width={settings.size}
-              height={settings.size}
               stroke={settings.strokeColor}
               strokeOpacity={settings.strokeOpacity}
-              strokeWidth={settings.strokeWidth }
+              strokeWidth={settings.strokeWidth}
               fill={settings.fillColor}
               fillOpacity={settings.fillOpacity}
             />

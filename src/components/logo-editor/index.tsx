@@ -12,7 +12,7 @@ export interface LogoSettings {
   fillColor: string;
   fillOpacity: number;
   iconName: string;
-  radius: number;
+  borderRadius: number;
   rotation: number;
   size: number;
   strokeWidth: number;
@@ -36,22 +36,21 @@ export default function LogoEditor() {
     });
   };
   async function handleDownload() {
+    const size = 500;
     const iconSvg = ReactDOMServer.renderToStaticMarkup(
       <IconRenderer
+        width={size * settings.size}
+        height={size * settings.size}
         icon={settings.iconName}
-        width={settings.size}
-        height={settings.size}
         stroke={settings.strokeColor}
         strokeWidth={settings.strokeWidth}
         fill={settings.fillColor}
         fillOpacity={settings.fillOpacity}
       />
     );
-  
+
     let defs = "";
     let backgroundFill = "";
-  
-  
 
     if (settings.background.startsWith("linear-gradient")) {
       const gradientMatch = settings.background.match(/linear-gradient\(([^)]+)\)/);
@@ -77,7 +76,7 @@ export default function LogoEditor() {
         backgroundFill = "url(#grad)";
       }
     } else if (settings.background.startsWith("radial-gradient")) {
-      const gradientMatch = settings.background.match(/radial-gradient\(([^)]+)\)/);      
+      const gradientMatch = settings.background.match(/radial-gradient\(([^)]+)\)/);
       if (gradientMatch) {
         const gradientContent = gradientMatch[1].split(",");
         const stops = gradientContent.map((stop, index) => {
@@ -89,67 +88,62 @@ export default function LogoEditor() {
         });
 
         defs = `
-      <defs>
-        <radialGradient id="grad" cx="50%" cy="50%" r="100%" fx="50%" fy="50%" gradientUnits="userSpaceOnUse">
-          ${stops.join("\n")}
-        </radialGradient>
-      </defs>
-    `;
-        backgroundFill = "url(#grad)";
+          <defs>
+            <radialGradient id="grad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%" spreadMethod="pad" gradientUnits="userSpaceOnUse">
+              ${stops.join("\n")}
+            </radialGradient>
+          </defs>
+        `;
+        backgroundFill = `url(#grad)`;
       }
     } else {
       backgroundFill = settings.background;
     }
-  
-    // Apply filter only if a shadow is present
-  
-    // Background rectangle with optional shadow filter
+
     const backgroundRect = `
       <rect
         x="0"
         y="0"
-        width="${500}"
-        height="${500}"
-        rx="${settings.radius}"
+        width="${size}"
+        height="${size}"
+        rx="${settings.borderRadius * size}"
         fill="${backgroundFill}"
       />
     `;
-  
-    // Full SVG output
+
     const fullSvg = `
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
-        width="${500}"
-        height="${500}"
+        width="${size}"
+        height="${size}"
       >
         ${defs}
         ${backgroundRect}
-        <g transform="translate(${500 / 2}, ${500 / 2}) rotate(${settings.rotation}) translate(${-settings.size / 2}, ${-settings.size / 2})">
+        <g transform="translate(${size / 2}, ${size / 2}) rotate(${settings.rotation}) translate(${-(size * settings.size) / 2}, ${-(size * settings.size) / 2})">
           ${iconSvg}
         </g>
       </svg>
     `;
-  
-    // Create blob and trigger download
+
     const blob = new Blob([fullSvg], { type: "image/svg+xml" });
     const url = URL.createObjectURL(blob);
-  
+
     const link = document.createElement("a");
     link.href = url;
-    link.download = "logo.svg";
+    link.download = `logo.svg`;
     link.click();
-  
+
     URL.revokeObjectURL(url);
   }
   
   
 
   return (
-    <div className="w-full h-full flex">
+    <div className="w-full h-full flex "  >
       <Toolbar settings={settings} update={update} />
       <Preview settings={settings} handleDownload={handleDownload} />
-      <PresetPanel update={update} currentSettings={settings} />
+      <PresetPanel update={update} currentSettings={settings} handleDownload={handleDownload} />
     </div>
   );
 }

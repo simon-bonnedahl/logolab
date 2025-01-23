@@ -55,14 +55,17 @@ const ColorPicker = forwardRef<
         </PopoverTrigger>
         <PopoverContent className='w-full'>
           <HexColorPicker color={parsedValue} onChange={onChange} />
-          <Input
-            maxLength={7}
-            onChange={(e) => {
-              onChange(e?.currentTarget?.value);
-            }}
-            ref={ref}
-            value={parsedValue}
-          />
+          <div className="mt-4 space-y-4">
+            <Input
+              maxLength={7}
+              onChange={(e) => {
+                onChange(e?.currentTarget?.value);
+              }}
+              ref={ref}
+              value={parsedValue}
+              className="font-mono"
+            />
+          </div>
         </PopoverContent>
       </Popover>
     );

@@ -74,7 +74,7 @@ export const IconPicker = ({
         className="w-full"
       />
       <TooltipProvider delayDuration={50}>
-        <div className="mt-4 grid grid-cols-[repeat(auto-fill,minmax(48px,1fr))] gap-3 h-full max-h-[400px] overflow-y-auto px-1 py-2 pb-16">
+        <div className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(56px,1fr))] gap-4 h-full max-h-[400px] overflow-y-auto px-2 py-3 pb-16">
           {displayedIcons.map(({ name, friendly_name }) => (
             <Tooltip key={name}>
               <TooltipTrigger asChild>
@@ -82,10 +82,10 @@ export const IconPicker = ({
                   type="button"
                   role="button"
                   onClick={() => onChange(name)}
-                  className="h-12 w-12 p-0 hover:bg-accent hover:text-accent-foreground"
+                  className="h-14 w-14 p-0 hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                   variant="outline"
                 >
-                  <IconRenderer icon={name} className="h-6 w-6" />
+                  <IconRenderer icon={name} className="h-7 w-7" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
@@ -160,9 +160,11 @@ export const useIconPicker = (): {
 
 export const IconRenderer = ({
   icon,
+  className,
   ...rest
 }: {
   icon: string;
+  className?: string;
 } & React.ComponentPropsWithoutRef<"svg">) => {
   const IconComponent = LucideIcons[
     icon as keyof typeof LucideIcons
@@ -172,5 +174,5 @@ export const IconRenderer = ({
     return null;
   }
 
-  return <IconComponent data-slot="icon" {...rest} />;
+  return <IconComponent data-slot="icon" {...rest}  className={className}/>;
 };

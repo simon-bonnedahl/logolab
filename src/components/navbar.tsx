@@ -7,7 +7,7 @@ export const Navbar = () => {
         <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className=" flex h-14 items-center justify-between  px-4">
                 <div className="flex items-center gap-6 font-semibold">
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-2">
                         <RotatingLogo />
                         <h1 className="text-xl">LogoLab</h1>
                     </div>

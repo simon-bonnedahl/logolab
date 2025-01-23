@@ -12,11 +12,11 @@ interface ToolbarProps {
 
 export const Toolbar = ({ settings, update }: ToolbarProps) => {
   return (
-    <div className="w-[300px] p-6 space-y-10 shadow-sm border-r bg-background/50 backdrop-blur-sm">
+    <div className="w-[300px] p-6 space-y-12 shadow-sm border-r bg-background/50 backdrop-blur-sm">
       {/* Background Section */}
       <div className="space-y-6">
-        <h2 className="text-xl font-semibold tracking-tight">Background</h2>
-        <div className="space-y-6">
+        <h2 className="text-xl font-semibold tracking-tight border-b pb-2">Background</h2>
+        <div className="space-y-8">
           <div>
             <Label htmlFor="background">Color & Gradient</Label>
             <GradientPicker
@@ -26,13 +26,14 @@ export const Toolbar = ({ settings, update }: ToolbarProps) => {
           </div>
 
           <div>
-            <Label htmlFor="radius">Border Radius: {settings.radius}px</Label>
+            <Label htmlFor="radius">Border Radius: {Math.round(settings.borderRadius*100)}%</Label>
             <Slider
               id="radius"
-              value={[settings.radius]}
+              value={[settings.borderRadius]}
+              step={0.01}
               min={0}
-              max={250}
-              onValueChange={(val) => update("radius", val[0])}
+              max={0.5}
+              onValueChange={(val) => update("borderRadius", val[0])}
             />
           </div>
         </div>
@@ -40,17 +41,18 @@ export const Toolbar = ({ settings, update }: ToolbarProps) => {
 
       {/* Icon Section */}
       <div className="space-y-6">
-        <h2 className="text-xl font-semibold tracking-tight">Icon</h2>
+        <h2 className="text-xl font-semibold tracking-tight border-b pb-2">Icon</h2>
         <div className="space-y-6">
           <IconPickerDialog iconName={settings.iconName} update={update} />
 
           <div>
-            <Label htmlFor="size">Size: {settings.size}px</Label>
+            <Label htmlFor="size">Size: {Math.round(settings.size*100)}%</Label>
             <Slider
               id="size"
               value={[settings.size]}
-              min={50}
-              max={400}
+              step={0.05}
+              min={0.1}
+              max={1}
               onValueChange={(val) => update("size", val[0])}
             />
           </div>
@@ -71,7 +73,7 @@ export const Toolbar = ({ settings, update }: ToolbarProps) => {
 
       {/* Style Section */}
       <div className="space-y-6">
-        <h2 className="text-xl font-semibold tracking-tight">Style</h2>
+        <h2 className="text-xl font-semibold tracking-tight border-b pb-2">Style</h2>
         <div className="space-y-8">
           <div className="space-y-4">
             <div>
