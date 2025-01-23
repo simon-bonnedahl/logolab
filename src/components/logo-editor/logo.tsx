@@ -6,7 +6,6 @@ interface LogoProps {
     size: number;
   }
   export const Logo = ({ settings, size }: LogoProps) => {
-    // Pattern behind everything
   return (
     <div
           className={"relative flex items-center justify-center shadow-xl"}

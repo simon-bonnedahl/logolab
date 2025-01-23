@@ -5,6 +5,7 @@ import { IconRenderer } from "../icon-picker";
 import { PresetPanel } from "./preset-panel";
 import { parseGradientAngle } from "@/lib/utils";
 import { Toolbar } from "./toolbar";
+import additionalPresets from "./additional-presets";
 
 export interface LogoSettings {
   background: string; // can be a color or gradient
@@ -19,18 +20,7 @@ export interface LogoSettings {
   strokeOpacity: number;
 }
 
-const defaultSettings: LogoSettings = {
-  background: "linear-gradient(to bottom right,#FDFC47,#24FE41)",
-  fillColor: "#ffffff",
-  fillOpacity: 0,
-  strokeColor: "#ffffff",
-  strokeOpacity: 1,
-  strokeWidth: 2.3,
-  iconName: "Apple",
-  radius: 80,
-  rotation: 0,
-  size: 400,
-};
+const defaultSettings: LogoSettings = additionalPresets[0];
 
 export default function LogoEditor() {
   const [settings, setSettings] = React.useState<LogoSettings>(() => {
@@ -87,23 +77,24 @@ export default function LogoEditor() {
         backgroundFill = "url(#grad)";
       }
     } else if (settings.background.startsWith("radial-gradient")) {
-      const gradientMatch = settings.background.match(/radial-gradient\(([^)]+)\)/);
+      const gradientMatch = settings.background.match(/radial-gradient\(([^)]+)\)/);      
       if (gradientMatch) {
         const gradientContent = gradientMatch[1].split(",");
         const stops = gradientContent.map((stop, index) => {
           const [color, position] = stop.trim().split(/\s+/);
-          return `<stop offset="${
-            position || (index / (gradientContent.length - 1)) * 100
-          }%" stop-color="${color}" />`;
+          const offset = position ? 
+            position.endsWith('%') ? position : `${parseFloat(position) * 100}%` :
+            `${(index / (gradientContent.length - 1)) * 100}%`;
+          return `<stop offset="${offset}" stop-color="${color}" />`;
         });
-  
-        defs += `
-          <defs>
-            <radialGradient id="grad" cx="50%" cy="50%" r="100%" fx="50%" fy="50%" gradientUnits="userSpaceOnUse">
-              ${stops.join("\n")}
-            </radialGradient>
-          </defs>
-        `;
+
+        defs = `
+      <defs>
+        <radialGradient id="grad" cx="50%" cy="50%" r="100%" fx="50%" fy="50%" gradientUnits="userSpaceOnUse">
+          ${stops.join("\n")}
+        </radialGradient>
+      </defs>
+    `;
         backgroundFill = "url(#grad)";
       }
     } else {
@@ -135,7 +126,6 @@ export default function LogoEditor() {
         ${defs}
         ${backgroundRect}
         <g transform="translate(${500 / 2}, ${500 / 2}) rotate(${settings.rotation}) translate(${-settings.size / 2}, ${-settings.size / 2})">
-        >
           ${iconSvg}
         </g>
       </svg>
@@ -159,7 +149,7 @@ export default function LogoEditor() {
     <div className="w-full h-full flex">
       <Toolbar settings={settings} update={update} />
       <Preview settings={settings} handleDownload={handleDownload} />
-      <PresetPanel  update={update} />
+      <PresetPanel update={update} currentSettings={settings} />
     </div>
   );
 }

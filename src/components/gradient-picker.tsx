@@ -57,7 +57,21 @@ export function GradientPicker({
     ['#40E0D0', '#FF8C00', '#FF0080'],
     ['#fcc5e4', '#fda34b', '#ff7882', '#c8699e', '#7046aa', '#0c1db8', '#020f75'],
     ['#ff75c3', '#ffa647', '#ffe83f', '#9fff5b', '#70e2ff', '#cd93ff'],
-    ['#03001e', '#7303c0', '#ec38bc', '#fdeff9'],    
+    ['#03001e', '#7303c0', '#ec38bc', '#fdeff9'],
+    ['#8EC5FC', '#E0C3FC'],
+    ['#4158D0', '#C850C0', '#FFCC70'],
+    ['#0093E9', '#80D0C7'],
+    ['#8BC6EC', '#9599E2'],
+    ['#A9C9FF', '#FFBBEC'],
+    ['#21D4FD', '#B721FF'],
+    ['#3EECAC', '#EE74E1'],
+    ['#FAD961', '#F76B1C'],
+    ['#FEE140', '#FA709A'],
+    ['#FF9A8B', '#FF6A88', '#FF99AC'],
+    ['#FBDA61', '#FF5ACD'],
+    ['#85FFBD', '#FFFB7D'],
+    ['#FF3CAC', '#784BA0', '#2B86C5'],
+    ['#FA8BFF', '#2BD2FF', '#2BFF88']
   ]
 
 

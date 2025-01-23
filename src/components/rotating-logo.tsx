@@ -19,7 +19,7 @@ export const RotatingLogo = () => {
   const currentPreset: LogoSettings = additionalPresets[currentPresetIndex];
   const scaledPreset = {
     ...currentPreset,
-    size: Math.round(currentPreset.size * (20 / currentPreset.size)),
+    size: Math.round(currentPreset.size * (15 / currentPreset.size)),
     radius: Math.round(currentPreset.radius * (30 / currentPreset.size))
   };
 

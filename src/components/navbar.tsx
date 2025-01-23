@@ -9,7 +9,7 @@ export const Navbar = () => {
                 <div className="flex items-center gap-6 font-semibold">
                     <div className="flex items-center">
                         <RotatingLogo />
-                        <h1 className="text-xl">Logo Lab</h1>
+                        <h1 className="text-xl">LogoLab</h1>
                     </div>
                 </div>
                 <div className="flex items-center gap-4">

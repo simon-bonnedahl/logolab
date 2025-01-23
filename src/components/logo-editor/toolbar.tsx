@@ -1,7 +1,7 @@
 import { LogoSettings } from ".";
+import { ColorPicker } from "../color-picker";
 import { GradientPicker } from "../gradient-picker";
 import { IconPickerDialog } from "../icon-picker";
-import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Slider } from "../ui/slider";
 
@@ -12,7 +12,7 @@ interface ToolbarProps {
 
 export const Toolbar = ({ settings, update }: ToolbarProps) => {
   return (
-    <div className="w-1/4 p-6 space-y-10 shadow-sm border-r bg-background/50 backdrop-blur-sm">
+    <div className="w-[300px] p-6 space-y-10 shadow-sm border-r bg-background/50 backdrop-blur-sm">
       {/* Background Section */}
       <div className="space-y-6">
         <h2 className="text-xl font-semibold tracking-tight">Background</h2>
@@ -72,64 +72,64 @@ export const Toolbar = ({ settings, update }: ToolbarProps) => {
       {/* Style Section */}
       <div className="space-y-6">
         <h2 className="text-xl font-semibold tracking-tight">Style</h2>
-        <div className="space-y-6">
-          <div>
-            <Label htmlFor="strokeWidth">Stroke Width: {settings.strokeWidth.toFixed(2)}px</Label>
-            <Slider
-              id="strokeWidth"
-              value={[settings.strokeWidth]}
-              min={0.1}
-              max={4}
-              step={0.1}
-              onValueChange={(val) => update("strokeWidth", val[0])}
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-6 pt-2">
+        <div className="space-y-8">
+          <div className="space-y-4">
             <div>
-              <Label htmlFor="strokeColor">Stroke Color</Label>
-              <Input
-                id="strokeColor"
-                type="color"
-                value={settings.strokeColor}
-                onChange={(e) => update("strokeColor", e.target.value)}
-                className="h-10"
-              />
-            </div>
-            <div>
-              <Label htmlFor="strokeOpacity">Stroke Opacity: {settings.strokeOpacity.toFixed(2)}</Label>
+              <Label htmlFor="strokeWidth" className="mb-2 block">Stroke Width: {settings.strokeWidth.toFixed(2)}px</Label>
               <Slider
-                id="strokeOpacity"
-                value={[settings.strokeOpacity]}
-                min={0}
-                max={1}
-                step={0.01}
-                onValueChange={(val) => update("strokeOpacity", val[0])}
+                id="strokeWidth"
+                value={[settings.strokeWidth]}
+                min={0.1}
+                max={4}
+                step={0.1}
+                onValueChange={(val) => update("strokeWidth", val[0])}
               />
             </div>
-          </div>
 
-          <div className="grid grid-cols-2 gap-6 pt-2">
-            <div>
-              <Label htmlFor="fillColor">Fill Color</Label>
-              <Input
-                id="fillColor"
-                type="color"
-                value={settings.fillColor}
-                onChange={(e) => update("fillColor", e.target.value)}
-                className="h-10"
-              />
+            <div className="space-y-2">
+              <Label htmlFor="strokeColor" className="block">Stroke Style</Label>
+              <div className="flex items-center gap-4">
+                <div className="w-1/2">
+                  <ColorPicker
+                    value={settings.strokeColor}
+                    onChange={(val) => update("strokeColor", val)}
+                  />
+                </div>
+                <div className="w-1/2">
+                  <Slider
+                    id="strokeOpacity"
+                    value={[settings.strokeOpacity]}
+                    min={0}
+                    max={1}
+                    step={0.01}
+                    onValueChange={(val) => update("strokeOpacity", val[0])}
+                  />
+                  <span className="text-xs text-muted-foreground mt-1 block">Opacity: {settings.strokeOpacity.toFixed(2)}</span>
+                </div>
+              </div>
             </div>
-            <div>
-              <Label htmlFor="fillOpacity">Fill Opacity: {settings.fillOpacity.toFixed(2)}</Label>
-              <Slider
-                id="fillOpacity"
-                value={[settings.fillOpacity]}
-                min={0}
-                max={1}
-                step={0.01}
-                onValueChange={(val) => update("fillOpacity", val[0])}
-              />
+
+            <div className="space-y-2">
+              <Label htmlFor="fillColor" className="block">Fill Style</Label>
+              <div className="flex items-center gap-4">
+                <div className="w-1/2">
+                  <ColorPicker
+                    value={settings.fillColor}
+                    onChange={(val) => update("fillColor", val)}
+                  />
+                </div>
+                <div className="w-1/2">
+                  <Slider
+                    id="fillOpacity"
+                    value={[settings.fillOpacity]}
+                    min={0}
+                    max={1}
+                    step={0.01}
+                    onValueChange={(val) => update("fillOpacity", val[0])}
+                  />
+                  <span className="text-xs text-muted-foreground mt-1 block">Opacity: {settings.fillOpacity.toFixed(2)}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -13,7 +14,6 @@ import { Input } from "@/components/ui/input";
 import * as LucideIcons from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { LogoSettings } from "./logo-editor";
-import { Label } from "./ui/label";
 
 type IconPickerDialogProps = {
   iconName: string;
@@ -28,25 +28,23 @@ export const IconPickerDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={(e) => setOpen(e)}>
-      <div className="flex flex-col">
-        <Label htmlFor="iconName" className="mb-1">Icon</Label>
+    
 
       <DialogTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" className="size-10 p-0">
           {iconName ? (
             <>
-              <IconRenderer className="size-4 text-zinc-500" icon={iconName} />
+              <IconRenderer  icon={iconName} />
             </>
           ) : (
             "Select"
           )}
         </Button>
       </DialogTrigger>
-      </div>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Select an Icon</DialogTitle>
-          <DialogDescription>Choose the best suited icon</DialogDescription>
+        
         </DialogHeader>
         <IconPicker
           onChange={(iconName) => {
@@ -54,6 +52,7 @@ export const IconPickerDialog = ({
             setOpen(false);
           }}
         />
+        
       </DialogContent>
     </Dialog>
   );
@@ -64,6 +63,8 @@ export const IconPicker = ({
   onChange: (icon: string) => void;
 }) => {
   const { search, setSearch, icons } = useIconPicker();
+  const [displayCount, setDisplayCount] = useState(100);
+  const displayedIcons = useMemo(() => icons.slice(0, displayCount), [icons, displayCount]);
 
   return (
     <div className="relative">
@@ -72,36 +73,49 @@ export const IconPicker = ({
         type="search"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        className="w-full"
       />
       <TooltipProvider delayDuration={50}>
-        <div className="mt-2 flex h-full max-h-[400px] flex-wrap gap-2 overflow-y-scroll py-4 pb-12">
-          {icons.splice(0, 1000).map(({ name, friendly_name }) => (
-            <Tooltip>
+        <div className="mt-4 grid grid-cols-[repeat(auto-fill,minmax(48px,1fr))] gap-3 h-full max-h-[400px] overflow-y-auto px-1 py-2 pb-16">
+          {displayedIcons.map(({ name, friendly_name }) => (
+            <Tooltip key={name}>
               <TooltipTrigger asChild>
                 <Button
-                  key={name}
                   type="button"
                   role="button"
                   onClick={() => onChange(name)}
-                  className="h-11"
+                  className="h-12 w-12 p-0 hover:bg-accent hover:text-accent-foreground"
+                  variant="outline"
                 >
-                  <IconRenderer icon={name} />
+                  <IconRenderer icon={name} className="h-6 w-6" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{friendly_name}</p>
+                <p className="text-sm">{friendly_name}</p>
               </TooltipContent>
             </Tooltip>
           ))}
-          {icons.length === 0 && (
-            <div className="col-span-full flex grow flex-col items-center justify-center gap-2 text-center">
-              <p>No icons found...</p>
-              <Button onClick={() => setSearch("")} variant="ghost">
+          {displayedIcons.length === 0 && (
+            <div className="col-span-full flex grow flex-col items-center justify-center gap-3 text-center py-8">
+              <p className="text-muted-foreground">No icons found...</p>
+              <Button onClick={() => setSearch("")} variant="secondary" size="sm">
                 Clear search
               </Button>
             </div>
           )}
         </div>
+        {displayedIcons.length > 0 && displayedIcons.length < icons.length && (
+          <div className="sticky bottom-0 w-full pt-3 pb-3 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/75 border-t shadow-sm">
+            <Button 
+              onClick={() => setDisplayCount(prev => prev + 100)} 
+              variant="secondary"
+              className="w-full"
+              size="sm"
+            >
+              Load More Icons
+            </Button>
+          </div>
+        )}
       </TooltipProvider>
     </div>
   );
