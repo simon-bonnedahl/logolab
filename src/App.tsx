@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import LogoEditor from "./components/logo-editor"
 import { Navbar } from "./components/navbar"
 import { TailwindIndicator } from "./components/tailwind-indicator"
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
 
       </main>
       <TailwindIndicator/>
+      <Analytics/>
      
     </ThemeProvider>
   )
