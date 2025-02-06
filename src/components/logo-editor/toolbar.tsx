@@ -12,7 +12,7 @@ interface ToolbarProps {
 
 export const Toolbar = ({ settings, update }: ToolbarProps) => {
   return (
-    <div className="w-[300px] p-6 space-y-12 shadow-sm border-r bg-background/50 backdrop-blur-sm">
+    <div className="w-1/5 p-6 space-y-12 shadow-sm border-r bg-background/50 backdrop-blur-sm">
       {/* Background Section */}
       <div className="space-y-6">
         <h2 className="text-xl font-semibold tracking-tight border-b pb-2">Background</h2>

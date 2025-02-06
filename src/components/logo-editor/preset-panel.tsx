@@ -30,7 +30,7 @@ export const PresetPanel = ({ update, currentSettings, handleDownload }: PresetP
   };
 
   return (
-    <div className="w-1/4 border-l bg-background/50 backdrop-blur-sm flex flex-col max-h-full overflow-hidden">
+    <div className="w-1/5 border-l bg-background/50 backdrop-blur-sm flex flex-col max-h-full overflow-hidden">
       <div className="p-6 border-b sticky top-0 bg-background/50 backdrop-blur-sm z-10">
         <h2 className="text-xl font-semibold tracking-tight">Presets</h2>
       </div>
